@@ -6,12 +6,12 @@ import Banner from './Banner.jsx'
 import Navbar from './Navbar.jsx'
 import Projects from './Projects.jsx'
 import {
-  createHashRouter,
+  createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
