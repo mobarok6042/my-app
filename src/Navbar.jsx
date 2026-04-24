@@ -48,28 +48,29 @@ function Navbar({ theme, toggleTheme }) {
               </li>
             </ul>
           </div>
-          <a href="/" className="btn btn-ghost text-xl hover:scale-125 hover:bg-opacity-80 transition-transform duration-200">
-            daisyUI
+          <a href="/" className="btn btn-ghost text-2xl font-bold tracking-wider hover:scale-110 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>
+            <span className={theme === "light" ? "text-[#1a1a2e]" : "text-white"}>
+              MHOSSEN
+            </span>
           </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200">Projects</a>
+              <a className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>Projects</a>
             </li>
             <li>
-              <a href="" className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200">Contact</a>
+              <a href="" className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>Contact</a>
             </li>
             <li>
-              <a className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200">About Me</a>
+              <a className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>About Me</a>
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end group relative">
           <button 
             onClick={toggleTheme} 
-            className="btn btn-circle btn-outline border-2 border-current"
-            title={theme === "light" ? "Switch to Dark Mode" : "Switch to Light Mode"}
+            className="btn btn-circle btn-outline border-2 border-current hover:scale-110 transition-transform duration-200"
           >
             {theme === "light" ? (
               <svg
@@ -91,6 +92,9 @@ function Navbar({ theme, toggleTheme }) {
               </svg>
             )}
           </button>
+          <span className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none" style={{ fontFamily: "'Lato', sans-serif" }}>
+            {theme === "light" ? "Switch to Dark Mode 🌙" : "Switch to Light Mode ☀️"}
+          </span>
         </div>
       </div>
     </div>

@@ -51,8 +51,8 @@ function Banner({ theme }) {
       className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl shadow-none rounded-lg"
     />
     <div className="text-center lg:text-left">
-      <h1 className="text-4xl font-bold" style={{ color: textColor }}>HI, I AM MOBAROK HOSSEN</h1>
-      <p className="py-4 text-xl" style={{ color: textColor }}>
+      <h1 className="text-4xl font-bold" style={{ color: textColor, fontFamily: "'Lato', sans-serif" }}>HI, I AM MOBAROK HOSSEN</h1>
+      <p className="py-4 text-xl" style={{ color: textColor, fontFamily: "'Lato', sans-serif" }}>
         I AM A <span className="border-r-2 border-current animate-pulse">{displayText}</span>
       </p>
       <a href="/biodata.pdf" download="Mobarok_Hossen_Biodata.pdf" className="btn btn-primary" style={{ backgroundColor: textColor, borderColor: textColor, color: bannerBg }}>
