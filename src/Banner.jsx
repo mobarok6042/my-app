@@ -43,7 +43,7 @@ function Banner({ theme }) {
   }, [displayText, isDeleting, currentWordIndex, words]);
   
   return (
-    <div className="border-2 border-current rounded-lg m-4">
+    <div className="border-2 border-green-400 rounded-lg m-4">
         <div className="hero min-h-screen" style={{ backgroundColor: bannerBg }}>
   <div className="hero-content flex-col lg:flex-row-reverse gap-12 px-4">
     <img

@@ -38,13 +38,13 @@ function Navbar({ theme, toggleTheme }) {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-                <a>Projects</a>
+                <a href="/projects">Projects</a>
               </li>
               <li>
-                <a href="">Contact</a>
+                <a href="/contact">Contact</a>
               </li>
               <li>
-                <a>About Me</a>
+                <a href="/about">About Me</a>
               </li>
             </ul>
           </div>
