@@ -57,13 +57,13 @@ function Navbar({ theme, toggleTheme }) {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>Projects</a>
+              <a href="/projects" className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>Projects</a>
             </li>
             <li>
-              <a href="" className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>Contact</a>
+              <a href="/contact" className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>Contact</a>
             </li>
             <li>
-              <a className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>About Me</a>
+              <a href="/about" className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>About Me</a>
             </li>
           </ul>
         </div>
