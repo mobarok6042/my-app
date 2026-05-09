@@ -28,7 +28,7 @@ function App() {
     >
       <Navbar theme={theme} toggleTheme={toggleTheme}></Navbar>
       <Banner theme={theme}></Banner>
-      <Projects></Projects>
+      <Projects theme={theme}></Projects>
     </div>
   );
 }
