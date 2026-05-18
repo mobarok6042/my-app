@@ -5,6 +5,7 @@ import App from './App.jsx'
 import Banner from './Banner.jsx'
 import Navbar from './Navbar.jsx'
 import Projects from './Projects.jsx'
+import About from './About.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
   {
     path: "/projects",
     element: <Projects />,
+  },
+  {
+    path: "/about",
+    element: <About />,
   }
 ]);
 

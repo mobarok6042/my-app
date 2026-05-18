@@ -41,15 +41,21 @@ function Navbar({ theme, toggleTheme }) {
                 <a href="/projects">Projects</a>
               </li>
               <li>
-                <a href="/contact">Contact</a>
+                <a href="/about">About Me</a>
               </li>
               <li>
-                <a href="/about">About Me</a>
+                <a href="/contact">Contact</a>
               </li>
             </ul>
           </div>
-          <a href="/" className="btn btn-ghost text-2xl font-bold tracking-wider hover:scale-110 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>
-            <span className={theme === "light" ? "text-[#1a1a2e]" : "text-white"}>
+          <a
+            href="/"
+            className="btn btn-ghost text-2xl font-bold tracking-wider hover:scale-110 transition-transform duration-200"
+            style={{ fontFamily: "'Lato', sans-serif" }}
+          >
+            <span
+              className={theme === "light" ? "text-[#1a1a2e]" : "text-white"}
+            >
               MHOSSEN
             </span>
           </a>
@@ -57,19 +63,37 @@ function Navbar({ theme, toggleTheme }) {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <a href="/projects" className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>Projects</a>
+              <a
+                href="/projects"
+                className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200"
+                style={{ fontFamily: "'Lato', sans-serif" }}
+              >
+                Projects
+              </a>
             </li>
             <li>
-              <a href="/contact" className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>Contact</a>
+              <a
+                href="/about"
+                className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200"
+                style={{ fontFamily: "'Lato', sans-serif" }}
+              >
+                About Me
+              </a>
             </li>
             <li>
-              <a href="/about" className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200" style={{ fontFamily: "'Lato', sans-serif" }}>About Me</a>
+              <a
+                href="/contact"
+                className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200"
+                style={{ fontFamily: "'Lato', sans-serif" }}
+              >
+                Contact
+              </a>
             </li>
           </ul>
         </div>
         <div className="navbar-end group relative">
-          <button 
-            onClick={toggleTheme} 
+          <button
+            onClick={toggleTheme}
             className="btn btn-circle btn-outline border-2 border-current hover:scale-110 transition-transform duration-200"
           >
             {theme === "light" ? (
@@ -92,8 +116,13 @@ function Navbar({ theme, toggleTheme }) {
               </svg>
             )}
           </button>
-          <span className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none" style={{ fontFamily: "'Lato', sans-serif" }}>
-            {theme === "light" ? "Switch to Dark Mode 🌙" : "Switch to Light Mode ☀️"}
+          <span
+            className="absolute -bottom-10 left-1/2 transform -translate-x-1/2 px-3 py-1 text-sm text-white bg-gray-800 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none"
+            style={{ fontFamily: "'Lato', sans-serif" }}
+          >
+            {theme === "light"
+              ? "Switch to Dark Mode 🌙"
+              : "Switch to Light Mode ☀️"}
           </span>
         </div>
       </div>
