@@ -47,7 +47,7 @@ function Banner({ theme }) {
         <div className="hero min-h-screen" style={{ backgroundColor: bannerBg }}>
   <div className="hero-content flex-col lg:flex-row-reverse gap-12 px-4">
     <img
-      src={pf}
+      src="https://res.cloudinary.com/dwc4wsavj/image/upload/q_auto/f_auto/v1779533562/profile-pic_bda843.png"
       className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl shadow-none rounded-lg"
     />
     <div className="text-center lg:text-left">

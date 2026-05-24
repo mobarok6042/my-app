@@ -34,7 +34,7 @@ function Projects({ theme }) {
         >
           <figure className="relative overflow-hidden h-56 flex-shrink-0">
             <img
-              src="https://i.ibb.co.com/Pv5GZNq5/travel.png"
+              src="https://res.cloudinary.com/dwc4wsavj/image/upload/q_auto/f_auto/v1779533752/travel_fgqm8c.png"
               alt="Site preview image unavailable"
               className="w-full h-full object-cover"
             />
@@ -83,7 +83,7 @@ function Projects({ theme }) {
         >
           <figure className="relative overflow-hidden h-56 flex-shrink-0">
             <img
-              src="https://i.ibb.co.com/1t4f0JZs/legal.png"
+              src="https://res.cloudinary.com/dwc4wsavj/image/upload/q_auto/f_auto/v1779533752/legal_oxb0br.png"
               alt="Site preview image unavailable"
               className="w-full h-full object-cover"
             />
@@ -132,7 +132,7 @@ function Projects({ theme }) {
         >
           <figure className="relative overflow-hidden h-56 flex-shrink-0">
             <img
-              src="https://i.ibb.co.com/m5vhs6vy/car-doctor.png"
+              src="https://res.cloudinary.com/dwc4wsavj/image/upload/q_auto/f_auto/v1779533751/car-doctor_ojv9qp.png"
               alt="Site preview image unavailable"
               className="w-full h-full object-cover"
             />
@@ -181,7 +181,7 @@ function Projects({ theme }) {
         >
           <figure className="relative overflow-hidden h-56 flex-shrink-0">
             <img
-              src="https://i.ibb.co.com/XfZHrgzH/books.png"
+              src="https://res.cloudinary.com/dwc4wsavj/image/upload/q_auto/f_auto/v1779533749/books_a2ticq.png"
               alt="Site preview image unavailable"
               className="w-full h-full object-cover"
             />
@@ -231,7 +231,7 @@ function Projects({ theme }) {
         >
           <figure className="relative overflow-hidden h-56 flex-shrink-0">
             <img
-              src="https://i.ibb.co.com/ycJYCNZZ/Alpha-Crash.png"
+              src="https://res.cloudinary.com/dwc4wsavj/image/upload/q_auto/f_auto/v1779533751/Alpha-Crash_asx2ht.png"
               alt="Site preview image unavailable"
               className="w-full h-full object-cover"
             />
@@ -282,7 +282,7 @@ function Projects({ theme }) {
         >
           <figure className="relative overflow-hidden h-56 flex-shrink-0">
             <img
-              src="https://i.ibb.co.com/nqCPdgzZ/Rtero-Forum.png"
+              src="https://res.cloudinary.com/dwc4wsavj/image/upload/q_auto/f_auto/v1779533974/Rtero-Forum_vlhak1.png"
               alt="Site preview image unavailable"
               className="w-full h-full object-cover"
             />
