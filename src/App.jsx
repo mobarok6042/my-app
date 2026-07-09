@@ -3,6 +3,7 @@ import Banner from "./Banner.jsx";
 import Navbar from "./Navbar.jsx";
 import Projects from "./Projects.jsx";
 import About from "./About.jsx";
+import SkillSection from "./SkillSection.jsx";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -29,7 +30,7 @@ function App() {
       <Banner theme={theme} />
       <Projects theme={theme} />
       <About theme={theme} />
-      <TechGlobe  theme={theme} />
+      <SkillSection  theme={theme} />
     </div>
   );
 }

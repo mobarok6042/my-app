@@ -6,6 +6,7 @@ import Banner from './Banner.jsx'
 import Navbar from './Navbar.jsx'
 import Projects from './Projects.jsx'
 import About from './About.jsx'
+import SkillSection from './SkillSection.jsx'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -34,8 +35,8 @@ const router = createBrowserRouter([
     element: <About />,
   },
   {
-    path: "/techglobe",
-    element: <TechGlobe />,
+    path: "/skillsection",
+    element: <SkillSection />,
   }
 ]);
 

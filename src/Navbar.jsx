@@ -47,7 +47,7 @@ function Navbar({ theme, toggleTheme }) {
                 <a href="/contact">Contact</a>
               </li>
               <li>
-                <a href="/techglobe">Skills</a>
+                <a href="/skillsection">Skills</a>
               </li>
             </ul>
           </div>
@@ -90,6 +90,15 @@ function Navbar({ theme, toggleTheme }) {
                 style={{ fontFamily: "'Lato', sans-serif" }}
               >
                 Contact
+              </a>
+            </li>
+            <li>
+              <a
+                href="/skillsection"
+                className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200"
+                style={{ fontFamily: "'Lato', sans-serif" }}
+              >
+                Skills
               </a>
             </li>
           </ul>
