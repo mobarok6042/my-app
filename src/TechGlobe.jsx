@@ -3,18 +3,30 @@ import { OrbitControls } from "@react-three/drei";
 import { TextureLoader } from "three";
 import { useMemo, useRef } from "react";
 
+import reactIcon from "./assets/icons/react.png";
+import jsIcon from "./assets/icons/javascript.png";
+import tsIcon from "./assets/icons/typescript.png";
+import htmlIcon from "./assets/icons/html5.png";
+import cssIcon from "./assets/icons/css3.png";
+import tailwindIcon from "./assets/icons/tailwindcss.png";
+import firebaseIcon from "./assets/icons/firebase.png";
+import mongodbIcon from "./assets/icons/mongodb.png";
+import nodeIcon from "./assets/icons/nodejs.png";
+import expressIcon from "./assets/icons/express.png";
+import gitIcon from "./assets/icons/git.png";
+
 const icons = [
-  "../public/icons/react.png",
-  "../public/icons/javascript.png",
-  "../public/icons/typescript.png",
-  "../public/icons/html5.png",
-  "../public/icons/css3.png",
-  "../public/icons/tailwindcss.png",
-  "../public/icons/firebase.png",
-  "../public/icons/mongodb.png",
-  "../public/icons/nodejs.png",
-  "../public/icons/express.png",
-  "../public/icons/git.png",
+  reactIcon,
+  jsIcon,
+  tsIcon,
+  htmlIcon,
+  cssIcon,
+  tailwindIcon,
+  firebaseIcon,
+  mongodbIcon,
+  nodeIcon,
+  expressIcon,
+  gitIcon
 ];
 
 function fibonacciSphere(count, radius = 2.2) {

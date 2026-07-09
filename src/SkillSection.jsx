@@ -1,4 +1,4 @@
-import TechGlobe from "./TechGlobe.jsx";
+import TechGlobe from "../src/TechGlobe.jsx";
 
 function SkillsSection() {
   return (
