@@ -2,7 +2,7 @@ import TechGlobe from "../src/TechGlobe.jsx";
 
 function SkillsSection() {
   return (
-    <section className="max-w-7xl mx-auto py-20 px-6">
+    <section className="relative z-10 max-w-7xl mx-auto mt-24 mb-16 px-6 py-16 overflow-hidden">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
 
         {/* Left Side */}
@@ -20,7 +20,9 @@ function SkillsSection() {
         </div>
 
         {/* Right Side */}
-        <TechGlobe />
+        <div className="flex justify-center lg:justify-end w-full">
+          <TechGlobe className="w-full" style={{ width: "100%", maxWidth: 480, height: 480 }} />
+        </div>
 
       </div>
     </section>

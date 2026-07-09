@@ -23,14 +23,15 @@ function App() {
 
   return (
     <div
-      className="min-h-screen transition-colors duration-300"
+      className="relative min-h-screen overflow-x-hidden transition-colors duration-300"
       style={{ background: bgColor }}
     >
       <Navbar theme={theme} toggleTheme={toggleTheme} />
       <Banner theme={theme} />
+      <SkillSection  theme={theme} />
       <Projects theme={theme} />
       <About theme={theme} />
-      <SkillSection  theme={theme} />
+      
     </div>
   );
 }
