@@ -32,6 +32,10 @@ const router = createBrowserRouter([
   {
     path: "/about",
     element: <About />,
+  },
+  {
+    path: "/techglobe",
+    element: <TechGlobe />,
   }
 ]);
 

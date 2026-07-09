@@ -29,6 +29,7 @@ function App() {
       <Banner theme={theme} />
       <Projects theme={theme} />
       <About theme={theme} />
+      <TechGlobe  theme={theme} />
     </div>
   );
 }

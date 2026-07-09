@@ -46,6 +46,9 @@ function Navbar({ theme, toggleTheme }) {
               <li>
                 <a href="/contact">Contact</a>
               </li>
+              <li>
+                <a href="/techglobe">Skills</a>
+              </li>
             </ul>
           </div>
           <a
