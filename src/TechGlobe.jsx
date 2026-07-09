@@ -26,9 +26,10 @@ const icons = [
   mongodbIcon,
   nodeIcon,
   expressIcon,
-  gitIcon
+  gitIcon,
 ];
 
+// Fibonacci Sphere
 function fibonacciSphere(count, radius = 2.2) {
   const points = [];
 
@@ -54,6 +55,8 @@ function fibonacciSphere(count, radius = 2.2) {
 function Icon({ position, image }) {
   const texture = useLoader(TextureLoader, image);
 
+  texture.anisotropy = 16;
+
   return (
     <sprite position={position} scale={[0.45, 0.45, 0.45]}>
       <spriteMaterial map={texture} transparent />
@@ -67,13 +70,17 @@ function Globe() {
   const positions = useMemo(() => fibonacciSphere(icons.length), []);
 
   useFrame((_, delta) => {
-    if (group.current) {
-      group.current.rotation.y += delta * 0.3;
-    }
+    if (!group.current) return;
+
+    // Continuous rotation on every axis
+    group.current.rotation.y += delta * 0.25;
+    group.current.rotation.x += delta * 0.08;
+    group.current.rotation.z += delta * 0.03;
   });
 
   return (
     <group ref={group}>
+      {/* Globe */}
       <mesh>
         <sphereGeometry args={[2.1, 64, 64]} />
         <meshBasicMaterial
@@ -84,6 +91,7 @@ function Globe() {
         />
       </mesh>
 
+      {/* Icons */}
       {icons.map((icon, index) => (
         <Icon
           key={index}
@@ -97,16 +105,33 @@ function Globe() {
 
 export default function TechGlobe() {
   return (
-    <div style={{ width: "100%", height: "500px" }}>
+    <div className="w-full h-[500px]">
       <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
-        <ambientLight intensity={2} />
 
+        {/* Lights */}
+        <ambientLight intensity={2} />
+        <directionalLight position={[5, 5, 5]} intensity={2} />
+
+        {/* Globe */}
         <Globe />
 
+        {/* Controls */}
         <OrbitControls
-          enablePan={false}
           enableZoom={false}
+          enablePan={false}
+
+          enableDamping
+          dampingFactor={0.08}
+
+          rotateSpeed={1}
+
+          // Allow full vertical rotation
+          minPolarAngle={0}
+          maxPolarAngle={Math.PI}
+
+          autoRotate={false}
         />
+
       </Canvas>
     </div>
   );
