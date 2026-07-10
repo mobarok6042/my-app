@@ -32,9 +32,9 @@
 
   background: radial-gradient(ellipse at center,
 
-              rgba(40, 30, 80, 0.35) 0%,
+              rgba(255, 255, 255, 0.06) 0%,
 
-              rgba(10, 8, 22, 0) 60%);
+              rgba(255, 255, 255, 0) 70%);
 
 }
 

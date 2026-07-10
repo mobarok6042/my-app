@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 function Navbar({ theme, toggleTheme }) {
   useEffect(() => {
@@ -39,21 +38,24 @@ function Navbar({ theme, toggleTheme }) {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-              <a href="#projects">Projects</a>
+                <a href="#projects">Projects</a>
               </li>
+
               <li>
                 <a href="#about">About Me</a>
               </li>
+
               <li>
                 <a href="#contact">Contact</a>
               </li>
+
               <li>
                 <a href="#skills">Skills</a>
               </li>
             </ul>
           </div>
           <a
-            href="/"
+            href="#banner"
             className="btn btn-ghost text-2xl font-bold tracking-wider hover:scale-110 transition-transform duration-200"
             style={{ fontFamily: "'Lato', sans-serif" }}
           >
@@ -68,7 +70,7 @@ function Navbar({ theme, toggleTheme }) {
           <ul className="menu menu-horizontal px-1">
             <li>
               <a
-                href="/projects"
+                href="#projects"
                 className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200"
                 style={{ fontFamily: "'Lato', sans-serif" }}
               >
@@ -77,7 +79,7 @@ function Navbar({ theme, toggleTheme }) {
             </li>
             <li>
               <a
-                href="/about"
+                href="#about"
                 className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200"
                 style={{ fontFamily: "'Lato', sans-serif" }}
               >
@@ -86,7 +88,7 @@ function Navbar({ theme, toggleTheme }) {
             </li>
             <li>
               <a
-                href="/contact"
+                href="#contact"
                 className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200"
                 style={{ fontFamily: "'Lato', sans-serif" }}
               >
@@ -95,7 +97,7 @@ function Navbar({ theme, toggleTheme }) {
             </li>
             <li>
               <a
-                href="/skillsection"
+                href="#skills"
                 className="hover:scale-125 hover:bg-opacity-80 transition-transform duration-200"
                 style={{ fontFamily: "'Lato', sans-serif" }}
               >

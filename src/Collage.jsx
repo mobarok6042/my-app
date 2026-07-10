@@ -100,12 +100,14 @@ function Collage({ theme }) {
   const goNext = () =>
     setActiveIndex((prev) => (prev + 1) % photos.length);
 
+  const headingColor = theme === "light" ? "#0f172a" : "#f8fafc";
+  const textColor = theme === "light" ? "#475569" : "#cbd5e1";
+
   return (
     <div className="m-4 px-32">
-      {/* Section heading — identical style to Projects */}
       <h2
         className="text-3xl md:text-5xl lg:text-7xl font-extrabold my-5 text-center"
-        style={{ fontFamily: "'Lato', sans-serif" }}
+        style={{ fontFamily: "'Lato', sans-serif", color: headingColor }}
       >
         My moments
       </h2>
@@ -116,10 +118,10 @@ function Collage({ theme }) {
           <div
             key={photo.id}
             onClick={() => openLightbox(index)}
-            className={`card shadow-sm transition-all duration-500 ease-in-out group hover:scale-105 hover:shadow-xl cursor-pointer flex flex-col h-full ${
+            className={`card shadow-sm transition-all duration-500 ease-in-out group hover:scale-105 hover:shadow-xl cursor-pointer flex flex-col h-full border ${
               theme === "light"
-                ? "bg-gray-900 text-white"
-                : "bg-white text-gray-900"
+                ? "bg-white text-slate-900 border-slate-200"
+                : "bg-slate-900/80 text-slate-100 border-slate-700"
             }`}
           >
             {/* Image with hover caption overlay */}
@@ -141,19 +143,18 @@ function Collage({ theme }) {
             </figure>
 
             <div className="card-body flex flex-col flex-1">
-              {/* Caption fades in on hover — matches Projects title behavior */}
-              <h2 className="card-title text-xl font-semibold opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100">
+              <h2 className="card-title text-xl font-semibold opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100" style={{ color: headingColor }}>
                 {photo.caption}
               </h2>
-              <p className="flex-1 text-sm opacity-70">
+              <p className="flex-1 text-sm" style={{ color: textColor }}>
                 Click to view full photo
               </p>
               <div className="card-actions justify-end mt-auto">
                 <div
                   className={`badge badge-outline text-base font-semibold ${
                     theme === "light"
-                      ? "border-white text-white"
-                      : "border-gray-900 text-gray-900"
+                      ? "border-slate-700 text-slate-700"
+                      : "border-slate-300 text-slate-200"
                   }`}
                 >
                   {photo.tag}

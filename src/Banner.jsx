@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import pf from './assets/profile-pic.png'
+import BannerParticle from './BannerParticle.jsx'
 
 function Banner({ theme }) {
-  const bannerBg = theme === "light" ? "rgba(70, 229, 208)" : "rgba(42, 138, 125)";
-  const textColor = theme === "light" ? "#1a1a2e" : "#ffffff";
+  const bannerBg = theme === "light" ? "rgba(15, 23, 42, 0.72)" : "rgba(2, 6, 23, 0.78)";
+  const textColor = theme === "light" ? "#f8fafc" : "#f8fafc";
   
   const words = ["A WEB DEVELOPER", "AN ENTREPRENEUR", "A DOMAINER"];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -43,9 +44,12 @@ function Banner({ theme }) {
   }, [displayText, isDeleting, currentWordIndex, words]);
   
   return (
-    <div id="banner" className="border-2 border-green-400 rounded-lg m-4">
-        <div className="hero min-h-screen" style={{ backgroundColor: bannerBg }}>
-  <div className="hero-content flex-col lg:flex-row-reverse gap-12 px-4">
+    <div id="banner" className="relative border-2 border-green-400 rounded-lg m-4 overflow-hidden">
+      <div className="absolute inset-0 opacity-90" style={{ pointerEvents: 'none' }}>
+        <BannerParticle theme={theme} />
+      </div>
+      <div className="hero min-h-screen relative" style={{ backgroundColor: bannerBg, backdropFilter: 'blur(2px)' }}>
+        <div className="hero-content flex-col lg:flex-row-reverse gap-12 px-4">
     <img
       src="https://res.cloudinary.com/dwc4wsavj/image/upload/q_auto/f_auto/v1779533562/profile-pic_bda843.png"
       className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-xl shadow-none rounded-lg"
