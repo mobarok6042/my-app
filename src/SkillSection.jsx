@@ -2,7 +2,7 @@ import TechGlobe from "../src/TechGlobe.jsx";
 
 function SkillsSection() {
   return (
-    <section className="relative z-10 max-w-7xl mx-auto mt-24 mb-16 px-6 py-16 overflow-hidden">
+    <section id="skills" className="relative z-10 max-w-7xl mx-auto mt-24 mb-16 px-6 py-16 overflow-hidden">
       <div className="grid lg:grid-cols-2 gap-12 items-center">
 
         {/* Left Side */}

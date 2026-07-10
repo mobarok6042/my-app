@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar({ theme, toggleTheme }) {
   useEffect(() => {
@@ -38,16 +39,16 @@ function Navbar({ theme, toggleTheme }) {
               className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               <li>
-               <link to="/projects">Projects</link>
+              <a href="#projects">Projects</a>
               </li>
               <li>
-                <link to="/about">About Me</link>
+                <a href="#about">About Me</a>
               </li>
               <li>
-                <link to="/contact">Contact</link>
+                <a href="#contact">Contact</a>
               </li>
               <li>
-                <link to="/skillsection">Skills</link>
+                <a href="#skills">Skills</a>
               </li>
             </ul>
           </div>
