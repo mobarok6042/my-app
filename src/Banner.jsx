@@ -5,7 +5,7 @@ function Banner({ theme }) {
   const bannerBg = theme === "light" ? "rgba(70, 229, 208)" : "rgba(42, 138, 125)";
   const textColor = theme === "light" ? "#1a1a2e" : "#ffffff";
   
-  const words = ["WEB DEVELOPER", "ENTREPRENEUR", "DOMAINER"];
+  const words = ["A WEB DEVELOPER", "AN ENTREPRENEUR", "A DOMAINER"];
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
@@ -53,7 +53,7 @@ function Banner({ theme }) {
     <div className="text-center lg:text-left">
       <h1 className="text-4xl font-bold" style={{ color: textColor, fontFamily: "'Lato', sans-serif" }}>HI, I AM MOBAROK HOSSEN</h1>
       <p className="py-4 text-xl" style={{ color: textColor, fontFamily: "'Lato', sans-serif" }}>
-        I AM A <span className="border-r-2 border-current animate-pulse">{displayText}</span>
+        I AM <span className="border-r-2 border-current animate-pulse">{displayText}</span>
       </p>
       <a href="/biodata.pdf" download="Mobarok_Hossen_Biodata.pdf" className="btn btn-primary" style={{ backgroundColor: textColor, borderColor: textColor, color: bannerBg }}>
         Download Resume
