@@ -13,16 +13,25 @@ export default function BannerParticle({ theme }) {
     let height = 0;
     let frameId;
     let rect = null;
-
-    const orb = {
-      x: 0.45,
-      y: 0.4,
-      vx: 0.0008,
-      vy: 0.0006,
-      radius: 0.12,
-    };
+    let stars = [];
 
     const mouse = { x: -1, y: -1, active: false };
+    const isLightTheme = theme === "light";
+
+    const createStars = () => {
+      stars = Array.from({ length: 10 }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height * 0.7,
+        vx: 2.2 + Math.random() * 1.2,
+        vy: 3.0 + Math.random() * 1.4,
+        size: 1.1 + Math.random() * 1.4,
+        opacity: isLightTheme ? 0.6 + Math.random() * 0.25 : 0.35 + Math.random() * 0.35,
+        drift: 0.01 + Math.random() * 0.02,
+        life: Math.random() * 0.8 + 0.4,
+        spawnDelay: Math.random() * 1200 + 400,
+        age: Math.random() * 1200,
+      }));
+    };
 
     const resize = () => {
       width = canvas.clientWidth;
@@ -31,6 +40,7 @@ export default function BannerParticle({ theme }) {
       canvas.height = Math.max(1, Math.floor(height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       rect = canvas.getBoundingClientRect();
+      createStars();
     };
 
     const handleMouseMove = (event) => {
@@ -49,45 +59,68 @@ export default function BannerParticle({ theme }) {
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
 
-      orb.x += orb.vx;
-      orb.y += orb.vy;
+      stars.forEach((star) => {
+        star.age += 1;
+        if (star.age < star.spawnDelay) return;
 
-      if (orb.x < -0.2) orb.x = 1.2;
-      if (orb.x > 1.2) orb.x = -0.2;
-      if (orb.y < -0.2) orb.y = 1.2;
-      if (orb.y > 1.2) orb.y = -0.2;
-
-      const px = orb.x * width;
-      const py = orb.y * height;
-      const r = Math.min(width, height) * orb.radius;
-      const themeColor = theme === "light" ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.22)";
-      const inner = ctx.createRadialGradient(px, py, 0, px, py, r);
-      inner.addColorStop(0, themeColor);
-      inner.addColorStop(1, "rgba(255,255,255,0)");
-
-      ctx.fillStyle = inner;
-      ctx.beginPath();
-      ctx.arc(px, py, r, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.strokeStyle = theme === "light" ? "rgba(255,255,255,0.16)" : "rgba(255,255,255,0.1)";
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.arc(px, py, r * 1.5, 0, Math.PI * 2);
-      ctx.stroke();
-
-      if (mouse.active) {
-        const dx = px - mouse.x;
-        const dy = py - mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const minDist = Math.max(width, height) * 0.18;
-        if (dist < minDist) {
-          const angle = Math.atan2(dy, dx);
-          const force = (minDist - dist) / minDist * 0.08;
-          orb.vx += Math.cos(angle) * force;
-          orb.vy += Math.sin(angle) * force;
+        if (mouse.active) {
+          const dx = star.x - mouse.x;
+          const dy = star.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 160 && dist > 0) {
+            const force = (160 - dist) / 160 * 0.03;
+            star.vx += (dx / dist) * force;
+            star.vy += (dy / dist) * force;
+          }
         }
-      }
+
+        star.x += star.vx * 0.6;
+        star.y += star.vy * 0.6;
+        star.vx *= 0.997;
+        star.vy *= 0.997;
+        star.x += Math.sin(star.y * 0.01) * star.drift;
+        star.life -= 0.0015;
+
+        if (star.x < -80 || star.y > height + 80 || star.life <= 0) {
+          star.x = Math.random() * width * 0.8 + width * 0.1;
+          star.y = -40 - Math.random() * 80;
+          star.vx = 2.2 + Math.random() * 1.2;
+          star.vy = 3.0 + Math.random() * 1.4;
+          star.size = 1.1 + Math.random() * 1.4;
+          star.opacity = isLightTheme ? 0.6 + Math.random() * 0.25 : 0.35 + Math.random() * 0.35;
+          star.drift = 0.01 + Math.random() * 0.02;
+          star.life = Math.random() * 0.8 + 0.4;
+          star.spawnDelay = Math.random() * 1400 + 600;
+          star.age = 0;
+        }
+
+        const tailLength = 48 + star.size * 22;
+        const tailX = star.x - star.vx * tailLength;
+        const tailY = star.y - star.vy * tailLength;
+
+        const gradient = ctx.createLinearGradient(star.x, star.y, tailX, tailY);
+        const color = isLightTheme ? "rgba(255,255,255,0.92)" : "rgba(248,250,252,0.95)";
+        gradient.addColorStop(0, color);
+        gradient.addColorStop(1, "rgba(255,255,255,0)");
+
+        ctx.save();
+        ctx.strokeStyle = gradient;
+        ctx.lineWidth = star.size;
+        ctx.lineCap = "round";
+        ctx.beginPath();
+        ctx.moveTo(star.x, star.y);
+        ctx.lineTo(tailX, tailY);
+        ctx.stroke();
+
+        const glow = ctx.createRadialGradient(star.x, star.y, 0, star.x, star.y, 10 + star.size * 4);
+        glow.addColorStop(0, `rgba(255,255,255,${star.opacity})`);
+        glow.addColorStop(1, "rgba(255,255,255,0)");
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, 4 + star.size * 2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      });
     };
 
     const render = () => {

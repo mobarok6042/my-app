@@ -8,7 +8,7 @@ import ParticleBackground from "./ParticleBackground.jsx";
 import { useState, useEffect } from "react";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
     setTheme((prev) => (prev === "light" ? "dark" : "light"));

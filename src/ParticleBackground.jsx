@@ -15,17 +15,29 @@ export default function ParticleBackground({ theme }) {
     let rect = null;
 
     const mouse = { x: 0, y: 0, active: false };
+    const isLightTheme = theme === "light";
+    const particleCount = 260;
+    let particles = [];
 
-    const particles = Array.from({ length: 360 }, () => ({
-      x: Math.random() * 2000,
-      y: Math.random() * 2000,
-      vx: (Math.random() - 0.5) * 0.24,
-      vy: (Math.random() - 0.5) * 0.24,
-      radius: Math.random() * 1.8 + 0.4,
-      alpha: Math.random() * 0.55 + 0.2,
-      twinkleOffset: Math.random() * Math.PI * 2,
-      twinkleSpeed: Math.random() * 0.045 + 0.015,
-    }));
+    const createParticles = () => {
+      particles = Array.from({ length: particleCount }, () => {
+        const homeX = Math.random() * width;
+        const homeY = Math.random() * height;
+
+        return {
+          x: homeX,
+          y: homeY,
+          homeX,
+          homeY,
+          vx: (Math.random() - 0.5) * 0.025,
+          vy: (Math.random() - 0.5) * 0.025,
+          radius: Math.random() * 1.8 + 0.4,
+          alpha: Math.random() * 0.55 + 0.2,
+          twinkleOffset: Math.random() * Math.PI * 2,
+          twinkleSpeed: Math.random() * 0.045 + 0.015,
+        };
+      });
+    };
 
     const resizeCanvas = () => {
       width = window.innerWidth;
@@ -34,6 +46,7 @@ export default function ParticleBackground({ theme }) {
       canvas.height = Math.max(1, Math.floor(height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       rect = canvas.getBoundingClientRect();
+      createParticles();
     };
 
     const handlePointerMove = (event) => {
@@ -52,39 +65,48 @@ export default function ParticleBackground({ theme }) {
     const draw = (time) => {
       ctx.clearRect(0, 0, width, height);
 
+      const drag = 0.92;
+      const returnStrength = 0.035;
+      const repulsionStrength = 0.06;
+      const influenceRadius = Math.min(width, height) * 0.16;
+
       particles.forEach((particle) => {
         if (mouse.active) {
           const dx = particle.x - mouse.x;
           const dy = particle.y - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          const influence = Math.max(width, height) * 0.18;
 
-          if (dist < influence && dist > 0) {
-            const force = ((influence - dist) / influence) * 0.18;
+          if (dist < influenceRadius && dist > 0) {
+            const force = ((influenceRadius - dist) / influenceRadius) * repulsionStrength;
             const angle = Math.atan2(dy, dx);
             particle.vx += Math.cos(angle) * force;
             particle.vy += Math.sin(angle) * force;
           }
+        } else {
+          particle.vx += (particle.homeX - particle.x) * 0.00018;
+          particle.vy += (particle.homeY - particle.y) * 0.00018;
+          particle.x += (particle.homeX - particle.x) * returnStrength;
+          particle.y += (particle.homeY - particle.y) * returnStrength;
         }
 
-        particle.x += particle.vx * 1.4;
-        particle.y += particle.vy * 1.4;
+        particle.x += particle.vx;
+        particle.y += particle.vy;
 
         if (particle.x < -20) particle.x = width + 20;
         if (particle.x > width + 20) particle.x = -20;
         if (particle.y < -20) particle.y = height + 20;
         if (particle.y > height + 20) particle.y = -20;
 
-        particle.vx *= 0.94;
-        particle.vy *= 0.94;
+        particle.vx *= drag;
+        particle.vy *= drag;
 
         const twinkle = 0.55 + 0.45 * Math.sin(time * 0.001 * particle.twinkleSpeed + particle.twinkleOffset);
         const glowRadius = particle.radius * (2.2 + twinkle * 1.8);
         const px = particle.x;
         const py = particle.y;
         const baseAlpha = Math.min(0.95, Math.max(0.12, particle.alpha * (0.8 + twinkle * 0.4)));
-        const [r, g, b] = theme === "light" ? [15, 23, 42] : [220, 240, 255];
-        const alphaScale = theme === "light" ? 0.95 : 1;
+        const [r, g, b] = isLightTheme ? [15, 23, 42] : [220, 240, 255];
+        const alphaScale = isLightTheme ? 0.95 : 1;
         const gradient = ctx.createRadialGradient(px, py, 0, px, py, glowRadius * 2.3);
 
         gradient.addColorStop(0, `rgba(${r},${g},${b},${baseAlpha * alphaScale})`);
@@ -92,7 +114,7 @@ export default function ParticleBackground({ theme }) {
         gradient.addColorStop(1, "rgba(255,255,255,0)");
 
         ctx.save();
-        ctx.globalCompositeOperation = theme === "light" ? "source-over" : "screen";
+        ctx.globalCompositeOperation = isLightTheme ? "source-over" : "screen";
         ctx.fillStyle = gradient;
         ctx.beginPath();
         ctx.arc(px, py, glowRadius * 2.3, 0, Math.PI * 2);
