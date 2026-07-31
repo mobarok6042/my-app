@@ -16,7 +16,13 @@ export default function ParticleBackground({ theme }) {
 
     const mouse = { x: 0, y: 0, active: false };
     const isLightTheme = theme === "light";
-    const particleCount = 260;
+
+    const particleCount = 240;
+    const particleOpacityScale = 0.74;
+    const particleSpeed = 0.11;
+    const magneticForce = 0.50;
+    const returnSpeed = 0.105;
+    const interactionRadius = 180;
     let particles = [];
 
     const createParticles = () => {
@@ -29,10 +35,10 @@ export default function ParticleBackground({ theme }) {
           y: homeY,
           homeX,
           homeY,
-          vx: (Math.random() - 0.5) * 0.025,
-          vy: (Math.random() - 0.5) * 0.025,
-          radius: Math.random() * 1.8 + 0.4,
-          alpha: Math.random() * 0.55 + 0.2,
+          vx: (Math.random() - 0.5) * particleSpeed,
+          vy: (Math.random() - 0.5) * particleSpeed,
+          radius: Math.random() * 1.6 + 0.35,
+          alpha: Math.random() * 0.26 + 0.12,
           twinkleOffset: Math.random() * Math.PI * 2,
           twinkleSpeed: Math.random() * 0.045 + 0.015,
         };
@@ -66,29 +72,29 @@ export default function ParticleBackground({ theme }) {
       ctx.clearRect(0, 0, width, height);
 
       const drag = 0.92;
-      const returnStrength = 0.035;
-      const repulsionStrength = 0.06;
-      const influenceRadius = Math.min(width, height) * 0.16;
+      const effectiveRadius = Math.min(width, height) * 0.16;
+      const influenceRadius = Math.min(interactionRadius, effectiveRadius);
 
       particles.forEach((particle) => {
+        const homeDx = particle.homeX - particle.x;
+        const homeDy = particle.homeY - particle.y;
+
         if (mouse.active) {
           const dx = particle.x - mouse.x;
           const dy = particle.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const dist = Math.hypot(dx, dy);
 
           if (dist < influenceRadius && dist > 0) {
-            const force = ((influenceRadius - dist) / influenceRadius) * repulsionStrength;
+            const influence =
+              ((influenceRadius - dist) / influenceRadius) * magneticForce;
             const angle = Math.atan2(dy, dx);
-            particle.vx += Math.cos(angle) * force;
-            particle.vy += Math.sin(angle) * force;
+            particle.vx += Math.cos(angle) * influence;
+            particle.vy += Math.sin(angle) * influence;
           }
-        } else {
-          particle.vx += (particle.homeX - particle.x) * 0.00018;
-          particle.vy += (particle.homeY - particle.y) * 0.00018;
-          particle.x += (particle.homeX - particle.x) * returnStrength;
-          particle.y += (particle.homeY - particle.y) * returnStrength;
         }
 
+        particle.x += homeDx * returnSpeed;
+        particle.y += homeDy * returnSpeed;
         particle.x += particle.vx;
         particle.y += particle.vy;
 
@@ -100,17 +106,41 @@ export default function ParticleBackground({ theme }) {
         particle.vx *= drag;
         particle.vy *= drag;
 
-        const twinkle = 0.55 + 0.45 * Math.sin(time * 0.001 * particle.twinkleSpeed + particle.twinkleOffset);
+        const twinkle =
+          0.55 +
+          0.45 *
+            Math.sin(
+              time * 0.001 * particle.twinkleSpeed + particle.twinkleOffset,
+            );
         const glowRadius = particle.radius * (2.2 + twinkle * 1.8);
         const px = particle.x;
         const py = particle.y;
-        const baseAlpha = Math.min(0.95, Math.max(0.12, particle.alpha * (0.8 + twinkle * 0.4)));
+        const baseAlpha = Math.min(
+          0.8,
+          Math.max(
+            0.08,
+            particle.alpha * particleOpacityScale * (0.85 + twinkle * 0.35),
+          ),
+        );
         const [r, g, b] = isLightTheme ? [15, 23, 42] : [220, 240, 255];
         const alphaScale = isLightTheme ? 0.95 : 1;
-        const gradient = ctx.createRadialGradient(px, py, 0, px, py, glowRadius * 2.3);
+        const gradient = ctx.createRadialGradient(
+          px,
+          py,
+          0,
+          px,
+          py,
+          glowRadius * 2.3,
+        );
 
-        gradient.addColorStop(0, `rgba(${r},${g},${b},${baseAlpha * alphaScale})`);
-        gradient.addColorStop(0.4, `rgba(${r},${g},${b},${baseAlpha * 0.45 * alphaScale})`);
+        gradient.addColorStop(
+          0,
+          `rgba(${r},${g},${b},${baseAlpha * alphaScale})`,
+        );
+        gradient.addColorStop(
+          0.4,
+          `rgba(${r},${g},${b},${baseAlpha * 0.42 * alphaScale})`,
+        );
         gradient.addColorStop(1, "rgba(255,255,255,0)");
 
         ctx.save();
