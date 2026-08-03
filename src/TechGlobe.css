@@ -40,6 +40,11 @@
 
 .tg-stage:active { cursor: grabbing; }
 
+@media (max-width: 640px) {
+  .tg-stage {
+    min-height: 320px;
+  }
+}
 
 .tg-canvas {
 

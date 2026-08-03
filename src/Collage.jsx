@@ -104,7 +104,7 @@ function Collage({ theme }) {
   const textColor = theme === "light" ? "#475569" : "#cbd5e1";
 
   return (
-    <div className="m-4 px-32">
+    <div className="mx-auto max-w-7xl px-4 sm:px-10 md:px-20 lg:px-32">
       <h2
         className="text-3xl md:text-5xl lg:text-7xl font-extrabold my-5 text-center"
         style={{ fontFamily: "'Lato', sans-serif", color: headingColor }}

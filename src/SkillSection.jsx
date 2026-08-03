@@ -24,7 +24,16 @@ function SkillsSection({ theme }) {
 
         {/* Right Side */}
         <div className="flex justify-center lg:justify-end w-full">
-          <TechGlobe className="w-full" style={{ width: "100%", maxWidth: 480, height: 480 }} />
+          <TechGlobe
+            className="w-full max-w-[480px] h-auto"
+            style={{
+              width: "100%",
+              maxWidth: 480,
+              height: "min(80vw, 480px)",
+              minHeight: 320,
+              aspectRatio: "1 / 1",
+            }}
+          />
         </div>
 
       </div>
